@@ -9,5 +9,10 @@ namespace FS19_UC12_Sistema.Classes
     {
         public string? cnpj { get; set; }
         public string? razaoSocial { get; set; }
+
+        public override void PagarImposto(float rendimento)
+        {
+            
+        }
     }
 }
