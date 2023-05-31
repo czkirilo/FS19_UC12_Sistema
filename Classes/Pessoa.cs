@@ -9,6 +9,8 @@ namespace FS19_UC12_Sistema.Classes
     {
         public string? nome { get; set; }
         public Endereco endereco { get; set; }
-        public abstract void PagarImposto(float rendimento);
+
+        public float rendimento {get; set;}
+        public abstract double PagarImposto(float rendimento);
     }
 }

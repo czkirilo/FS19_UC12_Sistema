@@ -55,6 +55,9 @@ do {
          novaPessoa.cpf = "45663175";
          novaPessoa.dataNascimento = new DateTime (2020, 05, 19);
          novaPessoa.endereco = end;
+         novaPessoa.rendimento = 4000;
+
+         Console.WriteLine(novaPessoa.PagarImposto(novaPessoa.rendimento).ToString("N2"));
 
          
         Console.WriteLine($"{novaPessoa.nome} mora na {novaPessoa.endereco.logradouro} Nº {novaPessoa.endereco.numero}");
@@ -78,6 +81,9 @@ do {
         pj.endereco = endpj;
         pj.cnpj = "12345678000001";
         pj.razaoSocial = "Bar do cleito";
+        pj.rendimento = 9000;
+
+        Console.WriteLine($"{pj.PagarImposto(pj.rendimento)},00");
 
             if (pj.ValidarCNPJ(pj.cnpj)){
             Console.WriteLine("CNPJ VALIDO");
