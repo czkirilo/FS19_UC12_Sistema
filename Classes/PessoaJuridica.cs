@@ -14,5 +14,18 @@ namespace FS19_UC12_Sistema.Classes
         {
             
         }
+
+        // somente permitir o cadastro com 14 números
+        // sendo os 4 antepenúltimos 0001. 
+        // configurar uma mensagem de erro.
+
+        public bool ValidarCNPJ(string cnpj){
+            if((cnpj.Length >= 14) && (cnpj.Substring(cnpj.Length - 4)) == "0001"){
+                return true;
+            }
+            return false;
+        }
+
+
     }
 }
