@@ -3,6 +3,7 @@
 class Program{
     static void Main(string[] args)
     {
+        List<PessoaFisica> listaPf = new List<PessoaFisica>(); 
         static void BarraCarregamento(string textocarregamento){
         Console.WriteLine(textocarregamento);
         Thread.Sleep(500);
@@ -28,6 +29,7 @@ class Program{
         Thread.Sleep(1000);
         Console.Clear();
         string opcao;
+        
 do {
         Console.WriteLine(@$"
 ***************************************************************
@@ -44,31 +46,88 @@ do {
 
         switch (opcao){
             case "1":
-         Endereco end = new Endereco();
-         end.logradouro = "Rua X";
-         end.numero = 100;
-         end.complemento = "Proximo ao SENAI";
-         end.enderecoComercial = false;
+            PessoaFisica novaPessoa = new PessoaFisica();
+            Endereco end = new Endereco();
+            string opcaopf;
 
-         PessoaFisica novaPessoa = new PessoaFisica();
-         novaPessoa.nome = "Caique";
-         novaPessoa.cpf = "45663175";
-         novaPessoa.dataNascimento = new DateTime (2020, 05, 19);
-         novaPessoa.endereco = end;
-         novaPessoa.rendimento = 4000;
+            do{
+                Console.Clear();
+Console.WriteLine(@$"
+***************************************************************
+*              Selecione uma das opções abaixo                *
+***************************************************************
+*               1 - Cadastrar Pessoa Fisica                   *
+*               2 - Mostrar Pessoas Fisicas                   *
+*                                                             *
+*               0 - Voltar ao menu anterior                   *
+***************************************************************
+        ");
+        opcaopf = Console.ReadLine();
 
-         Console.WriteLine(novaPessoa.PagarImposto(novaPessoa.rendimento).ToString("N2"));
+        switch (opcaopf){
+            case "1":
 
-         
-        Console.WriteLine($"{novaPessoa.nome} mora na {novaPessoa.endereco.logradouro} Nº {novaPessoa.endereco.numero}");
+            Console.WriteLine("Digite o nome da pessoa fisica que deseja cadastrar");
+            novaPessoa.nome = Console.ReadLine();
 
-       bool idadeValidada = novaPessoa.ValidarDataNascimento(novaPessoa.dataNascimento);
+            // Console.WriteLine("Digite o rendimento da pessoa fisica que deseja cadastrar");
+            // novaPessoa.rendimento = float.Parse(Console.ReadLine());
+
+            // Console.WriteLine("Digite o logradouro do endereço da pessoa fisica que deseja cadastrar");
+            // end.logradouro = Console.ReadLine();
+
+            // Console.WriteLine("Digite o cpf da pessoa fisica que deseja cadastrar");
+            // novaPessoa.cpf = Console.ReadLine();
+
+            Console.WriteLine("Digite a data de nascimento da pessoa fisica que deseja cadastrar DD/MM/AAAA");
+            novaPessoa.dataNascimento = DateTime.Parse(Console.ReadLine());
+
+            bool idadeValidada = novaPessoa.ValidarDataNascimento(novaPessoa.dataNascimento);
        
-       if (idadeValidada == true){
-        Console.WriteLine("Cadastro Aprovado");
-       }else{
-        Console.WriteLine("Cadastro REPROVADO por motivos de idade");
-       }
+            if (idadeValidada == true){
+                Console.WriteLine("Cadastro APROVADO");
+            }else{
+                Console.WriteLine("Cadastro REPROVADO por motivos de idade");
+            }
+        
+            listaPf.Add(novaPessoa);
+
+            break;
+            case "2":
+            Console.Clear();
+
+            if (listaPf.Count > 0){
+                foreach(PessoaFisica cadaPessoa in listaPf){
+                Console.Clear();
+                Console.WriteLine(@$"
+***************************************************************
+               Nome: {cadaPessoa.nome}                       
+               Data de Nascimento: {cadaPessoa.dataNascimento}
+                                                                           
+***************************************************************                
+
+                ");
+                }
+                Console.WriteLine("Aperte qualquer tecla para continuar");
+                Console.ReadLine();
+            }else{
+                Console.WriteLine("Lista Vazia!!!");
+                Thread.Sleep(3000);
+            }
+
+            break;
+            case "0":
+            break;
+            default:
+            Console.Clear();
+            Console.WriteLine("Opção invalida, por favor digite uma opção valida");
+            Thread.Sleep(2000);
+            break;
+
+
+        }
+            }while (opcaopf != "0");
+
             break;
             case "2":
         Endereco endpj = new Endereco();
