@@ -70,14 +70,14 @@ Console.WriteLine(@$"
             Console.WriteLine("Digite o nome da pessoa fisica que deseja cadastrar");
             novaPessoa.nome = Console.ReadLine();
 
-            // Console.WriteLine("Digite o rendimento da pessoa fisica que deseja cadastrar");
-            // novaPessoa.rendimento = float.Parse(Console.ReadLine());
+            Console.WriteLine("Digite o rendimento da pessoa fisica que deseja cadastrar");
+            novaPessoa.rendimento = float.Parse(Console.ReadLine());
 
-            // Console.WriteLine("Digite o logradouro do endereço da pessoa fisica que deseja cadastrar");
-            // end.logradouro = Console.ReadLine();
+            Console.WriteLine("Digite o logradouro do endereço da pessoa fisica que deseja cadastrar");
+            end.logradouro = Console.ReadLine();
 
-            // Console.WriteLine("Digite o cpf da pessoa fisica que deseja cadastrar");
-            // novaPessoa.cpf = Console.ReadLine();
+            Console.WriteLine("Digite o cpf da pessoa fisica que deseja cadastrar");
+            novaPessoa.cpf = Console.ReadLine();
 
             Console.WriteLine("Digite a data de nascimento da pessoa fisica que deseja cadastrar DD/MM/AAAA");
             novaPessoa.dataNascimento = DateTime.Parse(Console.ReadLine());
@@ -89,31 +89,39 @@ Console.WriteLine(@$"
             }else{
                 Console.WriteLine("Cadastro REPROVADO por motivos de idade");
             }
-        
-            listaPf.Add(novaPessoa);
+
+            //listaPf.Add(novaPessoa);
+            //console readline (read = ler, line = linha)   console writeline (write = escrever, line = linha)
+
+
+            using (StreamWriter banana = new StreamWriter($"{novaPessoa.nome}.txt"))
+            {
+                banana.WriteLine(@$"
+***************************************************************
+               Nome: {novaPessoa.nome}     
+               Rendimento:{novaPessoa.rendimento}    
+               Logradouro:{end.logradouro}    
+               CPF:{novaPessoa.cpf}               
+               Data de Nascimento: {novaPessoa.dataNascimento}                                                                
+***************************************************************                
+                ");
+            }
 
             break;
             case "2":
             Console.Clear();
+            Console.WriteLine("Digite o nome da pessoa que deseja procurar o cadastro");
+            string pessoa = Console.ReadLine();
 
-            if (listaPf.Count > 0){
-                foreach(PessoaFisica cadaPessoa in listaPf){
-                Console.Clear();
-                Console.WriteLine(@$"
-***************************************************************
-               Nome: {cadaPessoa.nome}                       
-               Data de Nascimento: {cadaPessoa.dataNascimento}
-                                                                           
-***************************************************************                
-
-                ");
+            using(StreamReader sr = new StreamReader($"{pessoa}.txt")){
+                string linha;
+                while((linha = sr.ReadLine()) != null){
+                    Console.WriteLine($"{linha}");
                 }
-                Console.WriteLine("Aperte qualquer tecla para continuar");
-                Console.ReadLine();
-            }else{
-                Console.WriteLine("Lista Vazia!!!");
-                Thread.Sleep(3000);
             }
+            Console.WriteLine("Aperte qualquer tecla para continuar");
+            Console.ReadLine();
+    
 
             break;
             case "0":
