@@ -3,7 +3,7 @@
 class Program{
     static void Main(string[] args)
     {
-        List<PessoaFisica> listaPf = new List<PessoaFisica>(); 
+       // List<PessoaFisica> listaPf = new List<PessoaFisica>(); 
         static void BarraCarregamento(string textocarregamento){
         Console.WriteLine(textocarregamento);
         Thread.Sleep(500);
