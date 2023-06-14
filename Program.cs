@@ -110,15 +110,17 @@ Console.WriteLine(@$"
             break;
             case "2":
             Console.Clear();
+            //Pergunta o nome
             Console.WriteLine("Digite o nome da pessoa que deseja procurar o cadastro");
             string pessoa = Console.ReadLine();
-
+            //lê o arquivo
             using(StreamReader sr = new StreamReader($"{pessoa}.txt")){
-                string linha;
+                string linha; //lê linha por linha
                 while((linha = sr.ReadLine()) != null){
                     Console.WriteLine($"{linha}");
                 }
             }
+            //Fecha
             Console.WriteLine("Aperte qualquer tecla para continuar");
             Console.ReadLine();
     
